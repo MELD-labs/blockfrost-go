@@ -22,6 +22,19 @@ var (
 
 const testdata = "testdata"
 
+func TestAddressExtendedUnMarshall(t *testing.T) {
+	want := blockfrost.AddressExtended{
+		Address:      "addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz",
+		Amount:       []blockfrost.AddressAmountExtended{{Unit: "lovelace", Quantity: "0", Decimals: 6, HasNftOnchainMetadata: false}},
+		StakeAddress: "stake1ux3u6x5cs388djqz6awnyuvez2f6n8jzjhqq59s4yxhm8jskeh0t9",
+		Type:         "shelley",
+		Script:       false,
+	}
+	fp := filepath.Join(testdata, "json", "address", "address_extended.json")
+	got := blockfrost.AddressExtended{}
+	testStructGotWant(t, fp, &got, &want)
+}
+
 func TestAddressUnMarshall(t *testing.T) {
 	stakeAddress := "stake1ux3u6x5cs388djqz6awnyuvez2f6n8jzjhqq59s4yxhm8jskeh0t9"
 
